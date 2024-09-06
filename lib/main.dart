@@ -1,35 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
-import 'Screens/AllQuotesScreen/View/AllQuotesPage.dart';
-import 'Screens/HomeScreen/View/HomePage.dart';
-import 'Screens/QuetosViewScreen/View/QuotesViewPage.dart';
-import 'Screens/QuotesAddScreen/View/QuotesAddPage.dart';
-import 'Screens/SeeAllQuotesScreen/View/SeeAllQuotesPage.dart';
-import 'Screens/TabBarScreen/View/TabBarPage.dart';
+import 'pages/Catagory_and_Author_page.dart';
+import 'pages/HomePage.dart';
+import 'pages/Splash_screen.dart';
+import 'pages/details_page.dart';
+import 'pages/quouts_page.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   runApp(
-    Sizer(
-      builder: (context, orientation, deviceType) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          routes: {
-            '/': (context) => HomePage(),
-            'Tab': (context) => TabBarPage(),
-            'Add': (context) => QuotesAddPage(),
-            'SeeAll': (context) => SeeAllQuotesPage(),
-            'View': (context) => QuotesViewPage(),
-            'AllQ': (context) => AllQuotesPage(),
-          },
-        );
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'splash_screen',
+      routes: {
+        'splash_screen': (context) => const SplashScreen(),
+        '/': (context) => const HomePage(),
+        'details_page': (context) => const DetailsPage(),
+        'category_or_author_page': (context) => const CategoryOrAuthorPage(),
+        'quotes_page': (context) => const QuotesPage(),
       },
     ),
   );
