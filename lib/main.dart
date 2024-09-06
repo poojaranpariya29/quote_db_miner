@@ -1,23 +1,30 @@
+import 'package:db_miner_quote/controller/home_controller.dart';
+import 'package:db_miner_quote/view/details_screen.dart';
+import 'package:db_miner_quote/view/home_screen.dart';
+import 'package:db_miner_quote/view/like_category_screen.dart';
+import 'package:db_miner_quote/view/like_screen.dart';
+import 'package:db_miner_quote/view/quotes_detail_screen.dart';
+import 'package:db_miner_quote/view/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'pages/Catagory_and_Author_page.dart';
-import 'pages/HomePage.dart';
-import 'pages/Splash_screen.dart';
-import 'pages/details_page.dart';
-import 'pages/quouts_page.dart';
+import 'package:get/get.dart';
 
 void main() {
+  HomeController controller = Get.put(HomeController());
+  controller.changeTheme();
   runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'splash_screen',
-      routes: {
-        'splash_screen': (context) => const SplashScreen(),
-        '/': (context) => const HomePage(),
-        'details_page': (context) => const DetailsPage(),
-        'category_or_author_page': (context) => const CategoryOrAuthorPage(),
-        'quotes_page': (context) => const QuotesPage(),
-      },
+    Obx(
+      () => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          "/": (context) => const SplashScreen(),
+          "Home": (context) => const HomeScreen(),
+          "detail": (context) => const DetailsScreen(),
+          "quotes": (context) => const QuotesDetailsScreen(),
+          "like": (context) => const LikeScreen(),
+          "likec": (context) => const LikeCategoryScreen(),
+        },
+        theme: controller.isLight.value ? ThemeData.light() : ThemeData.dark(),
+      ),
     ),
   );
 }
